@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+sitemap: https://Universal-Life-Church.netlify.com/sitemap.xml
