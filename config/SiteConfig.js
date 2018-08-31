@@ -1,6 +1,6 @@
 
 module.exports = {
-  pathPrefix: '/', // Prefix for all links. If you deploy your site to example.com/portfolio your pathPrefix should be "portfolio"
+  pathPrefix: '/Universal-Life-Church', // Prefix for all links. If you deploy your site to example.com/portfolio your pathPrefix should be "portfolio"
 
   siteTitle: 'Universal Life Church', // Navigation and Site Title
   siteTitleAlt: 'Minimal Blog - Gatsby Starter', // Alternative Site title for SEO
@@ -11,7 +11,7 @@ module.exports = {
   siteDescription: 'Minimal Blog with big typography', // Your site description
 
   // siteFBAppID: '123456789', // Facebook App ID - Optional
-  userTwitter: '@klutmeye', // Twitter Username - Optional
+  userTwitter: '@klutmeyer', // Twitter Username - Optional
   ogSiteName: 'danklutmeyer7', // Facebook Site Name - Optional
 
   // Manifest and Progress color
