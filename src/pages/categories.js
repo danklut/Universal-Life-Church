@@ -1,10 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
-import { Link, graphql } from 'gatsby';
+import { Link } from 'gatsby';
 import styled from 'styled-components';
 import kebabCase from 'lodash/kebabCase';
-import { Layout, Wrapper, Header, SectionTitle } from 'components';
+import Layout from '../components/Layout';
+import Wrapper from '../components/Wrapper';
+import Header from '../components/Header';
+import SectionTitle from '../components/SectionTitle';
 import { media } from '../utils/media';
 
 import config from '../../config/SiteConfig';
@@ -14,7 +16,7 @@ const Content = styled.div`
   box-shadow: 0 4px 120px rgba(0, 0, 0, 0.1);
   border-radius: 1rem;
   padding: 2rem 4rem;
-  background-color: ${props => props.theme.colors.bg};
+  background-color: ${props => props.theme.bg};
   z-index: 9000;
   margin-top: -3rem;
   @media ${media.tablet} {
@@ -31,41 +33,34 @@ const Title = styled.h3`
   margin-bottom: 0.75rem;
 `;
 
-const Category = ({
-  data: {
-    allMarkdownRemark: { group },
-  },
-}) => (
-  <Layout>
-    <Wrapper>
-      <Helmet title={`Categories | ${config.siteTitle}`} />
-      <Header>
-        <Link to="/">{config.siteTitle}</Link>
-      </Header>
-      <Content>
-        <SectionTitle>Categories</SectionTitle>
-        {group.map(category => (
-          <Title key={category.fieldValue}>
-            <Link to={`/categories/${kebabCase(category.fieldValue)}`}>{category.fieldValue}</Link> ({
-              category.totalCount
-            })
-          </Title>
-        ))}
-      </Content>
-    </Wrapper>
-  </Layout>
-);
+const Category = props => {
+  const { group } = props.data.allMarkdownRemark;
+
+  return (
+    <Layout>
+      <Wrapper>
+        <Helmet title={`Categories | ${config.siteTitle}`} />
+        <Header>
+          <Link to="/">{config.siteTitle}</Link>
+        </Header>
+        <Content>
+          <SectionTitle>Categories</SectionTitle>
+          {group.map(category => (
+            <Title>
+              <Link to={`/categories/${kebabCase(category.fieldValue)}`}>{category.fieldValue}</Link> ({
+                category.totalCount
+              })
+            </Title>
+          ))}
+        </Content>
+      </Wrapper>
+    </Layout>
+  );
+};
 
 export default Category;
 
-Category.propTypes = {
-  data: PropTypes.shape({
-    allMarkdownRemark: PropTypes.shape({
-      group: PropTypes.array.isRequired,
-    }),
-  }).isRequired,
-};
-
+/* eslint no-undef: off */
 export const postQuery = graphql`
   query CategoriesPage {
     allMarkdownRemark {
