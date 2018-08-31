@@ -1,3 +1,4 @@
+
 const config = require('./config/SiteConfig');
 
 const pathPrefix = config.pathPrefix === '/' ? '' : config.pathPrefix;
